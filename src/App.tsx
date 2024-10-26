@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [question, setQuestion] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const res = await axios.post('http://localhost:5001/cloud-function-poc-313fd/us-central1/openAiLangChainFunction', {
+        prompt: question,
+      });
+
+      // Store the response as a string
+      setResponse(JSON.stringify(res.data.message.text));
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setResponse('An error occurred.');
+    }
+  };
 
   return (
-    <>
+    <div>
+      <h1>Ask the AI</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Type your question here..."
+        />
+        <button type="submit">Submit</button>
+      </form>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>Response:</h2>
+        <p>{response}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+
