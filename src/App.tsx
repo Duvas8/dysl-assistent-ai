@@ -9,7 +9,7 @@ function App() {
     event.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5001/cloud-function-poc-313fd/us-central1/openAiLangChainFunction', {
+      const res = await axios.post('http://localhost:5001/dysl-assistant-ai/us-central1/aiAssistant', {
         prompt: question,
       });
 
