@@ -5,12 +5,13 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBYIETbOxz-aVQpAbyqeauYLKujhAh4p1o",
-  authDomain: "dysl-assistant-ai.firebaseapp.com",
-  projectId: "dysl-assistant-ai",
-  storageBucket: "dysl-assistant-ai.appspot.com",
-  messagingSenderId: "732579589256",
-  appId: "1:732579589256:web:9472bccb4919b71e42833d"
+  apiKey: "your-api-key",
+  authDomain: "your-project-id.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project-id.appspot.com",
+  messagingSenderId: "your-sender-id",
+  appId: "your-app-id",
+  measurementId: "your-measurement-id"
 };
 
 // Initialize Firebase
